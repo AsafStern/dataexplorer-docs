@@ -21,9 +21,9 @@ You must have at least [AllDatabasesMonitor](access-control/role-based-access-co
 
 ## Returns
 
-|Policy name | Entity name | Policy | Child entities | Entity type
-|---|---|---|---|---
-|QueryWeakConsistencyPolicy |  | JSON serialization of the [query weak consistency policy object](./query-weak-consistency-policy.md#the-policy-object) | | Cluster
+|Policy name | Entity name | Policy | Child entities | Entity type | EffectivePolicy
+|---|---|---|---|---|---
+|QueryWeakConsistencyPolicy |  | JSON serialization of the [query weak consistency policy object](./query-weak-consistency-policy.md#the-policy-object) that has been set for the cluster. It includes all the defined values, including default settings. | | Cluster | JSON serialization of the [query weak consistency policy object](./query-weak-consistency-policy.md#the-policy-object) currently in use for the cluster. It excludes any values that are set to the default (-1), providing a representation of the policy configuration that is actively governing the cluster's behavior.
 
 ## Example
 
@@ -31,6 +31,6 @@ You must have at least [AllDatabasesMonitor](access-control/role-based-access-co
 .show cluster policy query_weak_consistency 
 ```
 
-|PolicyName|EntityName|Policy|ChildEntities|EntityType|
-|---|---|---|---|---|
-|QueryWeakConsistencyPolicy||{"PercentageOfNodes": -1, "MinimumNumberOfNodes": -1, "MaximumNumberOfNodes": -1, "SuperSlackerNumberOfNodesThreshold": -1, "EnableMetadataPrefetch": false, "MaximumLagAllowedInMinutes": -1, "RefreshPeriodInSeconds": -1}| |Cluster
+|PolicyName|EntityName|Policy|ChildEntities|EntityType|EffectivePolicy|
+|---|---|---|---|---|---|
+|QueryWeakConsistencyPolicy||{"PercentageOfNodes": 17, "MinimumNumberOfNodes": -1, "MaximumNumberOfNodes": 12, "SuperSlackerNumberOfNodesThreshold": -1, "EnableMetadataPrefetch": false, "MaximumLagAllowedInMinutes": -1, "RefreshPeriodInSeconds": -1}| |Cluster|{"PercentageOfNodes": 17, "MinimumNumberOfNodes": 2, "MaximumNumberOfNodes": 12, "SuperSlackerNumberOfNodesThreshold": 2147483647, "EnableMetadataPrefetch": false, "MaximumLagAllowedInMinutes": 5, "RefreshPeriodInSeconds": 120}
